@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import PantallaReproductor from './Pantalla/PantallaReproductor';
 
-export default function App() {
+const Pila = createNativeStackNavigator();
+
+export default function Aplicacion() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Pila.Navigator
+        screenOptions={{
+          headerStyle:      { backgroundColor: '#2D2D2D' },
+          headerTintColor:  '#FFFFFF',
+          headerTitleStyle: { fontWeight: 'bold' },
+        }}
+      >
+        <Pila.Screen
+          name='Reproductor'
+          component={PantallaReproductor}
+          options={{ title: 'Reproductor de Musica' }}
+        />
+      </Pila.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
